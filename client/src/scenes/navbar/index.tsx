@@ -5,8 +5,12 @@ import { Box, Typography, useTheme } from '@mui/material';
 type Props = {}
 
 const Navbar = (props: Props) => {
+
+    const { palette } = useTheme();
+    
   return (
-    <div>Navbar</div>
+    <Box display="flex" justifyContent="space-between" alignItems="center">
+    </Box>
   )
 }
 
