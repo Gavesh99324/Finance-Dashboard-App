@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
 import DashboardBox from '@/components/DashboardBox';
 import { useGetKpisQuery } from '@/state/api';
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, Line, CartesianGrid, Legend, LineChart } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, Line, CartesianGrid, Legend, LineChart, BarChart, Bar } from 'recharts';
 import { useTheme } from '@mui/material';
 import BoxHeader from '@/components/BoxHeader';
+import { Rectangle } from 'recharts';
+
 
 
 type Props = {}
@@ -35,7 +37,7 @@ const Row1 = (props: Props) => {
           return {
             name: month.substring(0, 3),
             revenue: revenue,
-            profit: revenue - expenses,
+            profit: (revenue - expenses).toFixed(2),
           }
         })
       );
@@ -115,7 +117,38 @@ const Row1 = (props: Props) => {
     </DashboardBox>
 
 
-    <DashboardBox  gridArea={"c"}></DashboardBox>
+    <DashboardBox  gridArea={"c"}>
+    <ResponsiveContainer width="100%" height="100%">
+    <BoxHeader 
+         title='Revenue Month by Month' 
+         subtitle='graph representing the revenue month by month'
+         sideText='+4%'
+       />
+        <BarChart
+          width={500}
+          height={300}
+          data={revenue}
+          margin={{
+            top: 17,
+            right: 15,
+            left: -5,
+            bottom: 58,
+          }}
+        >
+          <defs>
+          <linearGradient id="colorRevenue" x1={0} y1={0} x2={0} y2={1}>
+              <stop offset={"5%"} stopColor={palette.primary[300]} stopOpacity={0.5} />
+              <stop offset={"90%"} stopColor={palette.primary[300]} stopOpacity={0} />
+          </linearGradient>
+          </defs>
+          <CartesianGrid vertical={false} stroke={palette.grey[800]} />
+          <XAxis dataKey="name" axisLine={false} tickLine={false} style={{ fontSize: "10px" }} />
+          <YAxis axisLine={false} tickLine={false} style={{ fontSize: "10px" }} />
+          <Tooltip />
+          <Bar dataKey="revenue" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+        </BarChart>
+      </ResponsiveContainer>
+    </DashboardBox>
     </>
   )
 }
