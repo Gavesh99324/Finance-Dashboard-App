@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Box, Typography, useTheme } from '@mui/material';
 import FlexBetween from '@/components/FlexBetween';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import { Typewriter } from 'react-simple-typewriter';
+
 
 type Props = {}
 
@@ -16,7 +18,15 @@ const Navbar = (props: Props) => {
       <FlexBetween gap="0.75rem">
         <MonetizationOnIcon sx={{ fontSize: "28px" }} />
         <Typography variant={"h4"} fontSize={"18px"}>
-          Insightify
+        <Typewriter
+    words={['Insightify']}
+    loop={1}
+    cursor
+    cursorStyle='.'
+    typeSpeed={100}
+    deleteSpeed={50}
+    delaySpeed={1000}
+  />
         </Typography>
       </FlexBetween>
 
