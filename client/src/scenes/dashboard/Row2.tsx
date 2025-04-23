@@ -8,7 +8,7 @@ const Row2 = (props: Props) => {
     <>
     <DashboardBox  gridArea={"d"}></DashboardBox>
     <DashboardBox  gridArea={"e"}></DashboardBox>
-    <DashboardBox  gridArea={"f"}></DashboardBox>
+    <DashboardBox  gridArea={"f"} marginTop={"-1.2rem"}></DashboardBox>
     </>
   )
 }
