@@ -7,6 +7,7 @@ import BoxHeader from '@/components/BoxHeader';
 import { Rectangle } from 'recharts';
 
 
+
 const Row1 = () => {
 
   const { palette } = useTheme();
@@ -77,7 +78,7 @@ const Row1 = () => {
         >
           <defs>
             <linearGradient id="colorRevenue" x1={0} y1={0} x2={0} y2={1}>
-              <stop offset={"5%"} stopColor={palette.primary[300]} stopOpacity={0.5} />
+              <stop offset={"5%"} stopColor={palette.secondary[500]} stopOpacity={0.5} />
               <stop offset={"90%"} stopColor={palette.primary[300]} stopOpacity={0} />
             </linearGradient>
             <linearGradient id="colorExpenses" x1={0} y1={0} x2={0} y2={1}>
@@ -89,7 +90,7 @@ const Row1 = () => {
           <XAxis dataKey="name" tickLine={false} style={{ fontSize: "10px" }} />
           <YAxis tickLine={false} axisLine={{ strokeWidth: 0 }} style={{ fontSize: "10px" }} domain={[8000, 23000]} />
           <Tooltip />
-          <Area type="monotone" dataKey="revenue" dot={true} stroke={palette.primary.main} fillOpacity={1} fill="url(#colorRevenue)" />
+          <Area type="monotone" dataKey="revenue" dot={true} stroke="#f2b455" fillOpacity={1} fill="url(#colorRevenue)" />
           <Area type="monotone" dataKey="expenses" dot={true} stroke={palette.primary.main} fillOpacity={1} fill="url(#colorExpenses)" />
         </AreaChart>
       </ResponsiveContainer>
@@ -121,7 +122,7 @@ const Row1 = () => {
           <Tooltip />
           <Legend height={20} wrapperStyle={{ margin: "0 0 10px 0"}} />
           <Line yAxisId={"left"} type={"monotone"} dataKey="profit" stroke={palette.tertiary[500]} />
-          <Line yAxisId={"right"} type="monotone" dataKey="revenue" stroke={palette.primary.main} />
+          <Line yAxisId={"right"} type="monotone" dataKey="revenue" stroke="#f2b455" />
         </LineChart>
       </ResponsiveContainer>
     </DashboardBox>
@@ -155,12 +156,12 @@ const Row1 = () => {
           <XAxis dataKey="name" axisLine={false} tickLine={false} style={{ fontSize: "10px" }} />
           <YAxis axisLine={false} tickLine={false} style={{ fontSize: "10px" }} />
           <Tooltip />
-          <Bar dataKey="revenue" fill="url(#colorRevenue)" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+          <Bar dataKey="revenue" fill="url(#colorRevenue)" activeBar={<Rectangle fill="#f2b455" stroke="#f2b455" />} />
         </BarChart>
       </ResponsiveContainer>
     </DashboardBox>
     </>
-  )
-}
+  );
+};
 
 export default Row1;  

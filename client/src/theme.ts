@@ -38,6 +38,13 @@ export const tokens = {
       // purple
       500: "#8884d8",
     },
+    orange: {
+      light: "#FFC04D",
+      main: "#FFA500",
+      dark: "#CC8400",
+      contrastText: "#fff",
+    },
+    
     background: {
       light: "#2d2d34",
       main: "#1f2026",
@@ -58,6 +65,13 @@ export const tokens = {
       },
       tertiary: {
         ...tokens.tertiary,
+      },
+      orange: {
+        ...tokens.orange,
+        main: tokens.orange.main,
+        light: tokens.orange.light,
+        dark: tokens.orange.dark,
+        contrastText: tokens.orange.contrastText,
       },
       grey: {
         ...tokens.grey,
@@ -104,3 +118,5 @@ export const tokens = {
       },
     },
   };
+
+
