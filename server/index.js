@@ -7,7 +7,9 @@ import helmet from "helmet";
 import morgan from "morgan";
 import kpiRoutes from "./routes/kpi.js";
 import KPI from "./models/KPI.js";
-import { kpis } from "./data/data.js";
+import { kpis, products } from "./data/data.js";
+import productRoutes from "./routes/product.js";
+import Product from "./models/Product.js"
 
 
 // CONFIGURATIONS
@@ -24,7 +26,8 @@ app.use(cors());
 console.log("Running Configurations 😁");
 
 // ROUTES
-app.use("/kpi", kpiRoutes )
+app.use("/kpi", kpiRoutes );
+app.use("/product", productRoutes);
 
 
 
@@ -38,5 +41,6 @@ mongoose
         /* Add Data One Time only or as needed */
        // await mongoose.connection.db.dropDatabase();
        // KPI.insertMany(kpis);
+       // Product.insertMany(products);
     })
     .catch((error) => console.log(`${error} did not connect`));
