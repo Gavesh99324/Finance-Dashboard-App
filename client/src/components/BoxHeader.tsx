@@ -16,11 +16,11 @@ const BoxHeader = ({icon, title, subtitle, sideText}: Props) => {
     const { palette } = useTheme();
 
   return (
-    <FlexBetween color={palette.grey[400]} margin={"1.5rem 1rem 0 1rem"}>
+    <FlexBetween color={palette.grey[100]} margin={"1.5rem 1rem 0 1rem"}>
         <FlexBetween>
             {icon}
             <Box width={"100%"}>
-                <Typography variant='h4' mb={"-0.2rem"}>
+                <Typography variant='h5' mb={"-0.2rem"}>
                     {title}
                 </Typography>
                 <Typography variant='h6'>
