@@ -2,8 +2,9 @@ import React, { useMemo } from 'react';
 import DashboardBox from '@/components/DashboardBox';
 import { useGetProductsQuery, useGetKpisQuery } from '@/state/api';
 import BoxHeader  from '@/components/BoxHeader';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell,  } from 'recharts';
 import { useTheme } from '@mui/material';
+
 
 
 type Props = {}
@@ -57,7 +58,34 @@ const Row2 = (props: Props) => {
     </DashboardBox>
 
 
-    <DashboardBox  gridArea={"e"}></DashboardBox>
+    <DashboardBox  gridArea={"e"}>
+    <PieChart 
+        width={110} 
+        height={100} 
+        onMouseEnter={this.onPieEnter}
+        margin={{
+          top: 0,
+          right: -10,
+          left: -10,
+          bottom: 0,
+        }}
+        >
+        <Pie
+          data={pieData}
+          innerRadius={18}
+          outerRadius={38}
+          paddingAngle={2}
+          dataKey="value"
+        >
+          {pieData.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={pieColors[index]} />
+          ))}
+        </Pie>
+      </PieChart>
+    </DashboardBox>
+
+
+
 
 
     <DashboardBox  gridArea={"f"} marginTop={"-1.2rem"}></DashboardBox>
