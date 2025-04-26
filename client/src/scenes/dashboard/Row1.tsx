@@ -58,7 +58,7 @@ const Row1 = () => {
 
   return (
     <>
-    <DashboardBox  gridArea={"a"}>
+    <DashboardBox  gridArea={"a"} ml={"-1rem"} sx={{ height: "260px"}}>
       <BoxHeader 
          title='Revenue and Expenses' 
          subtitle='top line represents revenue, bottom line represents expenses'
@@ -97,7 +97,7 @@ const Row1 = () => {
     </DashboardBox>
 
 
-    <DashboardBox  gridArea={"b"}>
+    <DashboardBox  gridArea={"b"} ml={"-0.7rem"} sx={{ height: "260px"}}>
     <BoxHeader 
          title='Profit and Revenue' 
          subtitle='top line represents revenue, bottom line represents expenses'
@@ -128,7 +128,7 @@ const Row1 = () => {
     </DashboardBox>
 
 
-    <DashboardBox  gridArea={"c"} sx={{ height: "220px"}}>
+    <DashboardBox  gridArea={"c"} sx={{ height: "190px"}} ml={"-0.7rem"}>
     <BoxHeader 
          title='Revenue Month by Month' 
          subtitle='graph representing the revenue month by month'

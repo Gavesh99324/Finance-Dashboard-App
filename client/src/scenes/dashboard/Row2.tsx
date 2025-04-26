@@ -7,8 +7,6 @@ import { useTheme, Box, Typography } from '@mui/material';
 import FlexBetween from '@/components/FlexBetween';
 
 
-
-
 type Props = {}
 
 const Row2 = (props: Props) => {
@@ -38,7 +36,7 @@ const Row2 = (props: Props) => {
 
   return (
     <>
-    <DashboardBox  gridArea={"d"}>
+    <DashboardBox  gridArea={"d"} mt={"-0.9rem"} ml={"-1rem"} sx={{ height: "240px" }}>
        <BoxHeader 
          title='Operationals vs Non-Operatonals Expenses' 
          subtitle='top line represents revenue, bottom line represents expenses'
@@ -65,18 +63,17 @@ const Row2 = (props: Props) => {
       </ResponsiveContainer>
     </DashboardBox>
 
-
-    <DashboardBox  gridArea={"e"}>
+    <DashboardBox  gridArea={"e"} sx={{ height: "165px" }} mt={"-0.9rem"} ml={"-0.7rem"}>
       <BoxHeader title='Campaigns and Targets' sideText='+4%' />
      <FlexBetween mt={"0.25rem"} gap={"1.5rem"}>
     <PieChart 
         width={110} 
         height={100} 
         margin={{
-          top: 0,
+          top: -15,
           right: -10,
           left: -10,
-          bottom: 0,
+          bottom: 3,
         }}
         >
         <Pie
@@ -92,21 +89,22 @@ const Row2 = (props: Props) => {
           ))}
         </Pie>
       </PieChart>
-      <Box ml={"-0.7rem"} flexBasis={"40%"} textAlign={"center"}>
+      <Box ml={"-0.9rem"} flexBasis={"40%"} textAlign={"center"}>
         <Typography variant='h5'>Target Sales</Typography>
         <Typography m={"o.3rem"} variant='h3' color={palette.primary[300]}>83</Typography>
         <Typography variant='h6'>Finance goals of the campaign that is desired</Typography>
       </Box>
+      <Box flexBasis={"40%"} mb={"0.8rem"} mr={"-0.1rem"}>
+        <Typography variant='h5' mb={"-0.3rem"} mr={"3rem"}>Losses in Revenue</Typography>
+        <Typography variant='h6'>Losses are down 25%</Typography>
+        <Typography mt={"0.4rem"} variant='h5'>Profit Margins</Typography>
+        <Typography variant='h6'>Margins are up by 30% from last month</Typography>
+      </Box>
      </FlexBetween>
     </DashboardBox>
 
-
-
-
-
-    <DashboardBox  gridArea={"f"} marginTop={"-1.2rem"}></DashboardBox>
+    <DashboardBox  gridArea={"f"} mt={"-1rem"} ml={"-0.7rem"} sx={{ height: "235px"}}></DashboardBox>
     </>
   )
 }
-
 export default Row2;
