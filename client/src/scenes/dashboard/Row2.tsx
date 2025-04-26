@@ -3,7 +3,9 @@ import DashboardBox from '@/components/DashboardBox';
 import { useGetProductsQuery, useGetKpisQuery } from '@/state/api';
 import BoxHeader  from '@/components/BoxHeader';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell,  } from 'recharts';
-import { useTheme } from '@mui/material';
+import { useTheme, Box, Typography } from '@mui/material';
+import FlexBetween from '@/components/FlexBetween';
+
 
 
 
@@ -11,7 +13,13 @@ type Props = {}
 
 const Row2 = (props: Props) => {
 
+  const pieData = [
+    { name: "Group A", value: 600 },
+    { name: "Group B", value: 400 },
+  ]
+
   const { palette } = useTheme();
+  const pieColors = [palette.primary[800], palette.primary[500]];
   const { data: operationalData } =useGetKpisQuery();
   const { data: productData } = useGetProductsQuery();
   
@@ -59,10 +67,11 @@ const Row2 = (props: Props) => {
 
 
     <DashboardBox  gridArea={"e"}>
+      <BoxHeader title='Campaigns and Targets' sideText='+4%' />
+     <FlexBetween mt={"0.25rem"} gap={"1.5rem"}>
     <PieChart 
         width={110} 
         height={100} 
-        onMouseEnter={this.onPieEnter}
         margin={{
           top: 0,
           right: -10,
@@ -71,6 +80,7 @@ const Row2 = (props: Props) => {
         }}
         >
         <Pie
+          stroke='none'
           data={pieData}
           innerRadius={18}
           outerRadius={38}
@@ -82,6 +92,12 @@ const Row2 = (props: Props) => {
           ))}
         </Pie>
       </PieChart>
+      <Box ml={"-0.7rem"} flexBasis={"40%"} textAlign={"center"}>
+        <Typography variant='h5'>Target Sales</Typography>
+        <Typography m={"o.3rem"} variant='h3' color={palette.primary[300]}>83</Typography>
+        <Typography variant='h6'>Finance goals of the campaign that is desired</Typography>
+      </Box>
+     </FlexBetween>
     </DashboardBox>
 
 
