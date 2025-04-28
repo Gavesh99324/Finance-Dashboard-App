@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import DashboardBox from '@/components/DashboardBox';
 import { useGetTransactionsQuery, useGetProductsQuery, useGetKpisQuery } from '@/state/api';
 import { DataGrid, GridCellParams } from '@mui/x-data-grid';
-import { Box, useTheme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import BoxHeader from '@/components/BoxHeader';
-
+import { Cell, Pie, PieChart } from 'recharts';
+import FlexBetween from '@/components/FlexBetween';
 
 
 type Props = {}
@@ -12,11 +13,32 @@ type Props = {}
 const Row3 = (props: Props) => {
 
   const { palette } = useTheme();
+  const pieColors = [palette.primary[800], palette.primary[500]];
 
   const { data: kpiData } = useGetKpisQuery();
   const { data: productData } = useGetProductsQuery();
   const { data: transactionData } = useGetTransactionsQuery();
   console.log('transactionData:', transactionData)
+
+  const pieChartData = useMemo(() => {
+    if (kpiData) {
+      const totalExpenses = kpiData[0].totalExpenses;
+      return Object.entries(kpiData[0].expensesByCategory).map(
+        ([key, value]) => {
+          return [
+            {
+              name: key,
+              value: value,
+            },
+            {
+              name: `${key} of Total`,
+              value: totalExpenses - value,
+            }
+          ]
+        }
+      )
+    }
+  }, [kpiData]);
 
   const productColumns = [
     {
@@ -86,7 +108,7 @@ const Row3 = (props: Props) => {
 
       <DashboardBox  gridArea={"h"} sx={{ height: "272px" }} mt={"-0.9rem"} ml={"-0.7rem"}>
       <BoxHeader title="Recent Orders" sideText={`${transactionData?.length} latest transactions`} subtitle='' />
-        <Box mt={"1rem"} p={"0 0.5rem"} height={"80%"} 
+        <Box mt={"1rem"} p={"0 0.5rem"} height={"80%"}
              sx={{ "& .MuiDataGrid-root": { color: palette.grey[300], border: "none" },
                   "& .MuiDataGrid-cell": { borderBottom: `1px solid ${palette.grey[800]} !important` },
                   "& .MuiDataGrid-columnHeaders": { borderBottom: `1px solid ${palette.grey[800]} !important` },
@@ -102,11 +124,38 @@ const Row3 = (props: Props) => {
         </Box>
       </DashboardBox>
 
-      <DashboardBox  gridArea={"i"} sx={{ height: "135px" }} mt={"-0.9rem"} ml={"-0.7rem"}></DashboardBox>
+      <DashboardBox  gridArea={"i"} sx={{ height: "135px" }} mt={"-0.9rem"} ml={"-0.7rem"} >
+        <BoxHeader title="Expense Breakdown By Category" sideText='+4%' subtitle='' />
+         <FlexBetween mt={"0.5rem"} gap={"0.5rem"} p={"0 1rem"} textAlign="center" >
+          {pieChartData?.slice(0, 3).map((data, i) => (
+            <Box mt={"-0.65rem"} key={`${data[0].name} - ${i}`}>
+            <PieChart
+              width={75}
+              height={75}
+            >
+              <Pie
+                stroke="none"
+                data={data}
+                innerRadius={18}
+                outerRadius={35}
+                paddingAngle={2}
+                dataKey="value"
+              >
+              {data.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={pieColors[index]} />
+                    ))}
+              </Pie>
+            </PieChart>
+            <Typography variant='h5'>{data[0].name}</Typography>
+          </Box>
+          ))}
+         </FlexBetween>
+      </DashboardBox>
+
       <DashboardBox  gridArea={"j"} sx={{ height: "125px" }} mt={"-0.9rem"} ml={"-0.7rem"}></DashboardBox>
     </>
-  )
-}
+  );
+};
 
 export default Row3;
 
