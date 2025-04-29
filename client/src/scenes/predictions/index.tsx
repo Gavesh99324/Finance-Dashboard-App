@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useGetKpisQuery } from "@/state/api";
 import DashboardBox from "@/components/DashboardBox";
 import FlexBetween from "@/components/FlexBetween";
 import { CartesianGrid, LineChart, ResponsiveContainer, XAxis, YAxis, Line, Tooltip, Legend, BarChart, Bar, Cell, PieChart, Pie, Label } from "recharts";
 
-
+import regression, { DataPoint } from "regression";
 
 type Props = {}
 
@@ -13,6 +13,29 @@ const Predictions = (props: Props) => {
     const { palette } = useTheme();
     const [isPrediction, setIsPrediction] = useState(false);
     const { data: kpiData } = useGetKpisQuery();
+
+    const formattedData = useMemo(() => {
+        if (!kpiData) return [];
+        const monthData = kpiData[0].monthlyData;
+        
+        const formatted: Array<DataPoint> = monthData.map(
+            ({ revenue }, i: number) => {
+                return [i, revenue]
+            }
+        );
+
+        const regressionLine = regression.linear(formatted);
+
+        return monthData.map(({ month, revenue }, i: number) => {
+            return {
+                name: month,
+                "Actual Revenue": revenue,
+                "Regression Line": regressionLine.points[i][1],
+                "Predicted Revenue": regressionLine.predict(i + 12)[1]
+            }
+        })
+
+    }, [kpiData]);
 
   return (
     <DashboardBox width={"100%"} height={"100%"} padding={"1rem"} overflow={"hidden"}>

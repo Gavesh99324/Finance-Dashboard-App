@@ -22,7 +22,8 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.4.1",
     "react-simple-typewriter": "^5.0.1",
-    "recharts": "^2.15.3"
+    "recharts": "^2.15.3",
+    "regression": "^2.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
