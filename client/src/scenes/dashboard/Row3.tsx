@@ -126,7 +126,7 @@ const Row3 = (props: Props) => {
 
       <DashboardBox  gridArea={"i"} sx={{ height: "135px" }} mt={"-0.9rem"} ml={"-0.7rem"} >
         <BoxHeader title="Expense Breakdown By Category" sideText='+4%' subtitle='' />
-         <FlexBetween mt={"0.5rem"} gap={"0.5rem"} p={"0 1rem"} textAlign="center" >
+         <FlexBetween mt={"0.6rem"} gap={"0.5rem"} p={"0 1rem"} textAlign="center" >
           {pieChartData?.slice(0, 3).map((data, i) => (
             <Box mt={"-0.65rem"} key={`${data[0].name} - ${i}`}>
             <PieChart
@@ -152,7 +152,17 @@ const Row3 = (props: Props) => {
          </FlexBetween>
       </DashboardBox>
 
-      <DashboardBox  gridArea={"j"} sx={{ height: "125px" }} mt={"-0.9rem"} ml={"-0.7rem"}></DashboardBox>
+      <DashboardBox  gridArea={"j"} sx={{ height: "125px" }} mt={"-0.9rem"} ml={"-0.7rem"}>
+       <BoxHeader title="Overall Summary and Explanation Data" sideText='+15%' subtitle='' />
+       <Box height={"15px"} margin={"1.25rem 1rem 0.4rem 1rem"} bgcolor={palette.primary[800]} borderRadius={"1rem"}>
+        <Box height={"15px"} bgcolor={palette.primary[600]} borderRadius={"1rem"} width={"40%"}>
+
+        </Box>
+       </Box>
+       <Typography margin={"0 1rem"} variant='h6'>
+          The data for this graph is a combination of the other graphs. It is a way to see how much of each category is spent on each category.
+       </Typography>
+      </DashboardBox>
     </>
   );
 };
