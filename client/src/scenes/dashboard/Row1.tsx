@@ -124,7 +124,7 @@ const Row1 = () => {
           <Line yAxisId={"left"} type={"monotone"} dataKey="profit" stroke={palette.tertiary[500]} />
           <Line yAxisId={"right"} type="monotone" dataKey="revenue" stroke="#f2b455" />
         </LineChart>
-      </ResponsiveContainer>
+    </ResponsiveContainer>
     </DashboardBox>
 
 
