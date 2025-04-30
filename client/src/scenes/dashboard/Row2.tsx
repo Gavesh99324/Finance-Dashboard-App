@@ -207,13 +207,14 @@ const Row2 = (props: Props) => {
             />
             <YAxis
               type="number"
-              dataKey="expense"
+              dataKey="price"
               name="expense"
               axisLine={false}
               tickLine={true}
               style={{ fontSize: "10px" }}
               tickFormatter={(v) => `$${v}`}
             />
+            <ZAxis type="number" range={[20]} />
             
             <Tooltip
               formatter={(v) => `$${v}`}
