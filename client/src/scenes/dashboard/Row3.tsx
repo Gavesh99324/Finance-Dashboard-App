@@ -8,7 +8,7 @@ import { Cell, Pie, PieChart } from 'recharts';
 import FlexBetween from '@/components/FlexBetween';
 
 
-type Props = {}
+// type Props = {}
 
 const Row3 = (props: Props) => {
 

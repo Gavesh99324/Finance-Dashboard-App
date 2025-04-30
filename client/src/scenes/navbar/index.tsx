@@ -6,7 +6,7 @@ import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import { Typewriter } from 'react-simple-typewriter';
 
 
-type Props = {}
+//type Props = {}
 
 const Navbar = (props: Props) => {
 
@@ -16,7 +16,25 @@ const Navbar = (props: Props) => {
   return (
     <FlexBetween mb="o.25rem" p="0.5rem 0rem" color={palette.grey[300]} >
       <FlexBetween gap="0.75rem">
-        <MonetizationOnIcon sx={{ fontSize: "28px" }} />
+        {/*         <MonetizationOnIcon sx={{ fontSize: "28px" }} /> */}
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            '&:hover .rotate-icon': {
+              animation: 'spin 0.6s linear',
+            },
+            '@keyframes spin': {
+              from: { transform: 'rotate(0deg)' },
+              to: { transform: 'rotate(360deg)' },
+            }
+          }}
+        >
+          <MonetizationOnIcon className="rotate-icon" sx={{ fontSize: "28px", transition: "transform 0.3s ease" }} />
+        </Box>
+
+
         <Typography variant={"h4"} fontSize={"18px"}>
         <Typewriter
     words={['Insightify']}

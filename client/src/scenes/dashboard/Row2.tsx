@@ -21,7 +21,7 @@ import { useTheme, Box, Typography } from "@mui/material";
 import FlexBetween from "@/components/FlexBetween";
 
 
-type Props = {};
+//type Props = {};
 
 const Row2 = (props: Props) => {
   const pieData = [
